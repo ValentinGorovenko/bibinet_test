@@ -18,7 +18,7 @@ class Command(BaseCommand):
         {'name': '412', 'mark': 'Москвич', 'is_visible': True},
     ]
 
-    def handle(self, *args, **options):
+    def handle(self, *args, **kwargs):
         for mark_data in self.MARKS:
             mark_obj = Mark.objects.create(**mark_data)
         self.stdout.write(self.style.SUCCESS('Макри автомобилей загружены.'))
