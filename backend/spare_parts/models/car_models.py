@@ -6,7 +6,7 @@ class Model(models.Model):
     name = models.CharField(
         max_length=100,
         verbose_name='Модель',
-        db_index=True,  # индекс для поиска по названию модели
+        db_index=True,
     )
     mark = models.ForeignKey(Mark,
                              on_delete=models.CASCADE,
@@ -15,7 +15,7 @@ class Model(models.Model):
     is_visible = models.BooleanField(
         default=True,
         verbose_name='Отображать',
-        db_index=True,  # индекс для поиска по видимости
+        db_index=True,
     )
     parts = models.ManyToManyField(
         'Part',

@@ -7,7 +7,7 @@ class Part(models.Model):
     name = models.CharField(
         max_length=100,
         verbose_name='Название',
-        db_index=True,  # индекс для поиска по названию запчасти
+        db_index=True,
     )
     mark = models.ManyToManyField(
         Mark,
@@ -28,7 +28,7 @@ class Part(models.Model):
     is_visible = models.BooleanField(
         default=True,
         verbose_name='Отображать',
-        db_index=True,  # индекс для поиска по видимости
+        db_index=True,
     )
 
     class Meta:
