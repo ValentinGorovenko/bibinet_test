@@ -1,6 +1,6 @@
 import random
 from django.core.management.base import BaseCommand
-from spare_parts.models import Part, Mark, Model
+from spare_parts.models import Part, Model
 
 
 class Command(BaseCommand):
@@ -9,12 +9,11 @@ class Command(BaseCommand):
     COLORS = ['Белый', 'Черный', 'Красный', 'Желтый', 'Зеленый']
 
     def handle(self, *args, **kwargs):
-        marks = Mark.objects.all()
         models = Model.objects.all()
 
-        for _ in range(10):
-            random_mark = random.choice(marks)
+        for _ in range(10000):
             random_model = random.choice(models)
+            random_mark = random_model.mark
             part_name = random.choice(self.PART_NAMES)
             json_data = {
                 'color': random.choice(self.COLORS),
