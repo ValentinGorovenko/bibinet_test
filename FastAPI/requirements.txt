@@ -1,0 +1,5 @@
+fastapi
+gunicorn==22.0.0
+uvicorn==0.30.3
+asyncpg
+pydantic

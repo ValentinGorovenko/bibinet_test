@@ -2,7 +2,7 @@ version: '3.3'
 
 services:
   db:
-    image: postgres:14.0-alpine
+    image: postgres:13
     environment:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
@@ -26,12 +26,27 @@ services:
       - "8000:8000"
     container_name: bibinet_django
 
+  fastapi:
+    build:
+      context: ./FastAPI
+      dockerfile: Dockerfile
+    volumes:
+      - ./FastAPI/bibinet_app:/bibinet_app
+    depends_on:
+      - db
+    environment:
+      - FASTAPI_PORT=8008
+    ports:
+      - "8008:8008"
+    container_name: bibinet_fastapi
+
   nginx:
     image: nginx:latest
     ports:
       - "80:80"
     depends_on:
       - django
+      - fastapi
     container_name: bibinet_nginx
 
 volumes:
